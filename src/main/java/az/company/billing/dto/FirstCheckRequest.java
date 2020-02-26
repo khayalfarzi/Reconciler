@@ -1,56 +1,43 @@
 package az.company.billing.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
-@Setter
+@Data
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @XmlRootElement(name = "mBilling")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class FirstCheckRequest {
 
-    private String TrType;
-
-    private String firstRRN;
-
-    private String lastRRN;
-
-    private Double totalAmount;
-
-    private String totalOperCount;
-
     @XmlElement(name = "TrType")
-    public String getTrType() {
-        return TrType;
-    }
+    private String trType;
 
     @XmlElement(name = "FirstRRN")
-    public String getFirstRRN() {
-        return firstRRN;
-    }
+    private String firstRRN;
 
     @XmlElement(name = "LastRRN")
-    public String getLastRRN() {
-        return lastRRN;
-    }
+    private String lastRRN;
 
     @XmlElement(name = "TotalAmount")
-    public Double getTotalAmount() {
-        return totalAmount;
-    }
+    private Double totalAmount;
 
     @XmlElement(name = "TotalOperCount")
-    public String getTotalOperCount() {
-        return totalOperCount;
-    }
+    private String totalOperCount;
 
     @Override
     public String toString() {
         return "FirstCheckRequest{" +
-                "TrType='" + TrType + '\'' +
+                "trType='" + trType + '\'' +
                 ", firstRRN='" + firstRRN + '\'' +
                 ", lastRRN='" + lastRRN + '\'' +
                 ", totalAmount=" + totalAmount +

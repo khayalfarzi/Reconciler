@@ -1,60 +1,50 @@
 package az.company.billing.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@XmlRootElement(name = "mBilling")
+@XmlRootElement(name = "Payments")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class PaymentDTO {
 
+    @XmlElement(name = "RRN")
     private String RRN;
 
+    @XmlElement(name = "Amount")
     private Double amount;
 
+    @XmlElement(name = "Currency")
     private String currency;
 
+    @XmlElement(name = "Date")
     private LocalDate date;
 
+    @XmlElement(name = "Time")
     private LocalTime time;
 
+    @XmlElement(name = "Details")
     private String details;
 
-    @XmlElement(name = "RRN")
-    public String getRRN() {
-        return RRN;
+    @Override
+    public String toString() {
+        return "PaymentDTO{" +
+                "RRN='" + RRN + '\'' +
+                ", amount=" + amount +
+                ", currency='" + currency + '\'' +
+                ", date=" + date +
+                ", time=" + time +
+                ", details='" + details + '\'' +
+                '}';
     }
-
-    @XmlElement(name = "Amount")
-    public Double getAmount() {
-        return amount;
-    }
-
-    @XmlElement(name = "Currency")
-    public String getCurrency() {
-        return currency;
-    }
-
-    @XmlElement(name = "Date")
-    public LocalDate getDate() {
-        return date;
-    }
-
-    @XmlElement(name = "Time")
-    public LocalTime getTime() {
-        return time;
-    }
-
-    @XmlElement(name = "Details")
-    public String getDetails() {
-        return details;
-    }
-
 }

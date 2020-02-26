@@ -41,11 +41,11 @@ public class PremiumEntity {
     @Column(name = "amount")
     private Double amount;
 
-    @Column(name = "transaction_date")
     @CreationTimestamp
+    @Column(name = "transaction_date")
     private LocalDate transactionDate;
 
-    @Column(name = "transaction_time")
     @CreationTimestamp
+    @Column(name = "transaction_time")
     private LocalTime transactionTime;
 }

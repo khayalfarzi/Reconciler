@@ -1,5 +1,6 @@
 package az.company.billing.entities;
 
+import lombok.Builder;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -8,6 +9,7 @@ import java.util.Date;
 
 @Data
 @Entity
+@Builder
 public class IssueEntity {
 
     @Id

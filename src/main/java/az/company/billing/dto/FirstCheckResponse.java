@@ -1,31 +1,26 @@
 package az.company.billing.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @XmlRootElement(name = "mBilling")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class FirstCheckResponse {
 
+    @XmlElement(name = "TrType")
     private String trType;
 
-    private String status;
-
-    @XmlElement(name = "TrType")
-    public String getTrType() {
-        return trType;
-    }
-
     @XmlElement(name = "Status")
-    public String getStatus() {
-        return status;
-    }
+    private String status;
 
     @Override
     public String toString() {
