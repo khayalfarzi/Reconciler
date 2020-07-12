@@ -53,7 +53,8 @@ public class FirstCheckService {
                     .totalAmount(totalA)
                     .build();
 
-            firstCheckResponseMethod(Objects.requireNonNull(Parser.firstCheckResponseEntity(url, firstCheckRequestEntity).getBody()));
+            FirstCheckResponse firstCheckResponse = (FirstCheckResponse) Parser.objectResponseEntity(url, firstCheckRequestEntity).getBody();
+            firstCheckResponseMethod(Objects.requireNonNull(firstCheckResponse));
         } else {
             LOGGER.warn("Daily transfer not founded.");
             throw new NoDataFoundException("No daily transfer founded.");

@@ -17,17 +17,24 @@ public class Parser {
     private static final HttpHeaders HTTP_HEADERS = new HttpHeaders();
     private static final RestTemplate restTemplate = new RestTemplate();
 
-    public static ResponseEntity<FirstCheckResponse> firstCheckResponseEntity(String url, FirstCheckRequest firstCheckRequest) {
+//    public static ResponseEntity<FirstCheckResponse> firstCheckResponseEntity(String url, FirstCheckRequest firstCheckRequest) {
+//
+//        HTTP_HEADERS.setContentType(MediaType.APPLICATION_XML);
+//        HttpEntity<FirstCheckRequest> firstCheckRequestHttpEntity = new HttpEntity<>(firstCheckRequest, HTTP_HEADERS);
+//        return restTemplate.postForEntity(url, firstCheckRequestHttpEntity, FirstCheckResponse.class);
+//    }
+//
+//    public static ResponseEntity<SecondCheckResponse> secondCheckResponseEntity(String url, SecondCheckRequest secondCheckRequest) {
+//
+//        HTTP_HEADERS.setContentType(MediaType.APPLICATION_XML);
+//        HttpEntity<SecondCheckRequest> secondCheckRequestHttpEntity = new HttpEntity<>(secondCheckRequest, HTTP_HEADERS);
+//        return restTemplate.postForEntity(url, secondCheckRequestHttpEntity, SecondCheckResponse.class);
+//    }
+
+    public static ResponseEntity<Object> objectResponseEntity(String url, Object object) {
 
         HTTP_HEADERS.setContentType(MediaType.APPLICATION_XML);
-        HttpEntity<FirstCheckRequest> firstCheckRequestHttpEntity = new HttpEntity<>(firstCheckRequest, HTTP_HEADERS);
-        return restTemplate.postForEntity(url, firstCheckRequestHttpEntity, FirstCheckResponse.class);
-    }
-
-    public static ResponseEntity<SecondCheckResponse> secondCheckResponseEntity(String url, SecondCheckRequest secondCheckRequest) {
-
-        HTTP_HEADERS.setContentType(MediaType.APPLICATION_XML);
-        HttpEntity<SecondCheckRequest> secondCheckRequestHttpEntity = new HttpEntity<>(secondCheckRequest, HTTP_HEADERS);
-        return restTemplate.postForEntity(url, secondCheckRequestHttpEntity, SecondCheckResponse.class);
+        HttpEntity<Object> objectCheckRequestHttpEntity = new HttpEntity<>(object, HTTP_HEADERS);
+        return restTemplate.postForEntity(url, objectCheckRequestHttpEntity, Object.class);
     }
 }

@@ -1,5 +1,6 @@
 package az.company.billing.service;
 
+import az.company.billing.dto.PaymentDTO;
 import az.company.billing.dto.SecondCheckRequest;
 import az.company.billing.dto.SecondCheckResponse;
 import az.company.billing.entities.PremiumEntity;
@@ -24,20 +25,24 @@ public class SecondCheckService {
     void secondCheckRequestMethod(List<PremiumEntity> PREMIUM_ENTITY_LIST, SecondCheckRequest secondCheckRequest) {
         LOGGER.info("secondCheckRequestMethod() is started...");
         String url = "http://localhost:9090/secondCheckResponseXml";
-        secondCheckResponseMethod(PREMIUM_ENTITY_LIST, Objects.requireNonNull(Parser.secondCheckResponseEntity(url, secondCheckRequest).getBody()));
+        secondCheckResponseMethod(PREMIUM_ENTITY_LIST, Objects.requireNonNull((SecondCheckResponse) Parser.objectResponseEntity(url, secondCheckRequest).getBody()));
         LOGGER.info("secondCheckRequestMethod() is stopped.");
     }
 
     private void secondCheckResponseMethod(List<PremiumEntity> PREMIUM_ENTITY_LIST, SecondCheckResponse secondCheckResponse) {
 
         LOGGER.info("secondCheckResponseMethod() is started...");
-        for (int i = 0; i < secondCheckResponse.getPayments().size(); i++) {
-            if (!PREMIUM_ENTITY_LIST.get(i).getRRN().equals(secondCheckResponse.getPayments().get(i).getRRN())
-                    && !PREMIUM_ENTITY_LIST.get(i).getAmount().equals(secondCheckResponse.getPayments().get(i).getAmount())) {
-                LOGGER.warn("AzeriCard side: " + PREMIUM_ENTITY_LIST.get(i) + ": : Bank side: " + secondCheckResponse.getPayments().get(i).toString());
-            } else {
-                LOGGER.info("everything is okay");
+//        List<PaymentDTO>badTransactions=PREMIUM_ENTITY_LIST.stream().
+
+
+
+            for (int i = 0; i < secondCheckResponse.getPayments().size(); i++) {
+                if (!PREMIUM_ENTITY_LIST.get(i).getRRN().equals(secondCheckResponse.getPayments().get(i).getRRN())
+                        && !PREMIUM_ENTITY_LIST.get(i).getAmount().equals(secondCheckResponse.getPayments().get(i).getAmount())) {
+                    LOGGER.warn("AzeriCard side: " + PREMIUM_ENTITY_LIST.get(i) + ": : Bank side: " + secondCheckResponse.getPayments().get(i).toString());
+                } else {
+                    LOGGER.info("everything is okay");
+                }
             }
-        }
     }
 }
